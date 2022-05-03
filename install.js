@@ -2,7 +2,7 @@
 /**
  * ppm-comppath
  *
- * @version 1.0
+ * @version 1.1
  * @return Error message
  * @arg 0 If nonzero dry run
  */
