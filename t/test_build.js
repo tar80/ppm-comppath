@@ -1,6 +1,6 @@
 ﻿//!*script
 /**
- * Dry run build config
+ * Build config, then return message
  *
  */
 

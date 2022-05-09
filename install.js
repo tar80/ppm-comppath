@@ -37,16 +37,14 @@ var COPY_FLAG = false;
 var fso = PPx.CreateObject('Scripting.FileSystemObject');
 var reply = function () {
   var args = [].slice.call(arguments);
-  var path = PPx.Extract('%*getcust(S_ppm#global:ppm)\\script\\jscript\\' + this.name + '.js');
+  var path = PPx.Extract('%*getcust(S_ppm#global:ppm)\\lib\\jscript\\' + this.name + '.js');
 
   if (!fso.FileExists(path)) {
-    PPx.Echo('Not found:\n' + path);
-    PPx.Quit(-1);
+    PPx.Result = 'Not found: ' + fso.GetFileName(path) + ',';
+    PPx.Quit(1);
   }
 
-  return PPx.Extract(
-    '%*script("' + path + '",' + args + ')'
-  );
+  return PPx.Extract('%*script("' + path + '",' + args + ')');
 };
 
 /* Check versions */
@@ -63,14 +61,29 @@ var versions = reply.call({name: 'version'}, [
 ]);
 
 /* Check executables */
-var exeNames = EXECUTABLES.length > 0 ? reply.call({name: 'exe_exists'}, '2', EXECUTABLES) : '';
+var exeNames = (function () {
+  var result = EXECUTABLES.length > 0 ? reply.call({name: 'exe_exists'}, 2, 0, EXECUTABLES) : '';
+
+  if (result !== '') {
+    result = 'Not exist executables: ' + result + ',';
+  }
+
+  return result;
+})();
 
 /* Check modules */
-var moduleNames = MODULES.length > 0 ? reply.call({name: 'module_exists'}, '2', MODULES) : '';
+var moduleNames = (function () {
+  var result = MODULES.length > 0 ? reply.call({name: 'module_exists'}, 2, 0, MODULES) : '';
+
+  if (result !== '') {
+    result = 'Not exist modules: ' + result + ',';
+  }
+
+  return result;
+})();
 
 if (g_dryrun === 0 && COPY_FLAG) {
   try {
-    var wd = fso.getFile(PPx.ScriptName).ParentFolder;
     var config_dir = PPx.Extract('%*getcust(S_ppm#global:cache)') + '\\list\\';
     fso.CopyFile(wd + '\\sheet\\*', config_dir, false);
   } catch (_err) {
