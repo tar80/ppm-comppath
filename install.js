@@ -2,7 +2,7 @@
 /**
  * ppm-comppath
  *
- * @version 1.1
+ * @version 1.2
  * @return Error message
  * @arg 0 If nonzero dry run
  */
@@ -15,7 +15,7 @@ if (g_dryrun === 0 && PPx.Extract("%'ppm_running'") !== '1') {
 }
 
 /* Requires version */
-var PPX_VERSION = 18400;
+var PPX_VERSION = 18403;
 var SCRIPT_VERSION = 18;
 var PPM_VERSION = 0.1;
 
@@ -35,12 +35,13 @@ var SCRIPTTYPE_PERMISSION = 0;
 var COPY_FLAG = false;
 
 var fso = PPx.CreateObject('Scripting.FileSystemObject');
+var wd = fso.getFile(PPx.ScriptName).ParentFolder;
 var reply = function () {
   var args = [].slice.call(arguments);
   var path = PPx.Extract('%*getcust(S_ppm#global:ppm)\\lib\\jscript\\' + this.name + '.js');
 
   if (!fso.FileExists(path)) {
-    PPx.Result = 'Not found: ' + fso.GetFileName(path) + ',';
+    PPx.Result = '[Not found] ' + path + ',';
     PPx.Quit(1);
   }
 
