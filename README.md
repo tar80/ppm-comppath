@@ -1,6 +1,6 @@
 # ppm-comppath
 
-ppx-plugin-maneger用のプラグインです。  
+ppx-plugin-manager用のプラグインです。  
 パス補完用の一行編集を追加します。  
 キー操作でのパスの昇降、fenrirscanを用いたパスリストの生成などを含みます。
 

@@ -10,7 +10,7 @@
 var g_dryrun = PPx.Arguments.length ? PPx.Arguments.Item(0) | 0 : 0;
 
 if (g_dryrun === 0 && PPx.Extract("%'ppm_running'") !== '1') {
-  PPx.Echo('This script is executable from ppx-plugin-maneger');
+  PPx.Echo('This script is executable from ppx-plugin-manager');
   PPx.Quit(-1);
 }
 
