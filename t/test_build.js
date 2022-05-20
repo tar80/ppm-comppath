@@ -18,7 +18,7 @@ var plugin = (function () {
   return {name: name, flag: delete_flag};
 })();
 
-PPx.Extract('%*script(%*getcust(S_ppm#global:ppm)\\script\\jscript\\build.js,' + plugin.name + ',def,1)');
+PPx.Extract('%*script(%*getcust(S_ppm#global:ppm)\\script\\jscript\\build.js,' + plugin.name + ',user,1)');
 
 if (plugin.flag === true) {
   PPx.Execute('*deletecust S_ppm#plugins:' + plugin.name);
