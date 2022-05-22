@@ -4,7 +4,7 @@
 VERSION=1.4
 
 #Requires ppm version
-PPM_VERSION=0.13
+PPM_VERSION=0.5
 
 #Requires PPx version
 PPX_VERSION=18403
