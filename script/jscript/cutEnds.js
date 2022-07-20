@@ -1,10 +1,5 @@
 ﻿//!*script
 /**
- * Cut the word of the ending of editing string
- *
- */
-
-/**
  * Separate command and path of editing string
  * NOTE:If the path is a route, separate it to command side
  *

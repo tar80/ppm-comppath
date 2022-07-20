@@ -1,12 +1,5 @@
 ﻿//!*script
 /**
- * Cut the word of the ending of editing string
- *
- */
-
-'use strict';
-
-/**
  * Separate command and path of editing string
  * NOTE:If the path is a route, separate it to command side
  *
@@ -16,6 +9,9 @@
  *  2: Substitute the part corresponding to the parent directory in the string
  * ]
  */
+
+'use strict';
+
 const divTexts = (() => {
   const text = PPx.Extract('%*edittext');
   const enc = {reg: /[",%]/g, fmt: {'"': '""', ',': '@##@', '%': '@~~@'}};
