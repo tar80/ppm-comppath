@@ -8,22 +8,24 @@ Repository: https://github.com/tar80/ppm-comppath
 パス補完用の一行編集を追加します。
 パス補完一行編集ではfenrirscanで生成したパスリストを利用できる他、キー操作での
 パス昇降、入力途中でのENTER押下時に第一候補を選択する機能が有効になります。
+またzoxideのパスが通っていれば、zoxide queryの出力を操作することもできます。
 
 fenrirscanはhttp://hp.vector.co.jp/authors/VA026310/soft2.htmで配布されている
 fenrirに同梱されています。fenerirscanのパス生成機能を利用するには、PPxの
 インストールディレクトリにfenrirscanを配置する必要があります。
-利用しないなら、プラグイン設定の[section]内、F12キーの設定を削除または
-コメントアウトしてください。
 
 ===============================================================================
 構成ファイルの説明
 
 	\script\xxx\cutEnds.js	上方向へパスを補完するためのスクリプト
+	\script\xxx\counter.js	Gオペレーターのカウンター用スクリプト
+	\script\xxx\fenrirs.js	fenrirscan制御スクリプト
 
 ===============================================================================
 テーブル情報
 
-	K_liedComppath	パス補完一行編集で使用するキー
+	K_ppmComppath	パス補完一行編集で使用するキー
+	M_ppmComppath	fenrirscan制御用メニュー
 
 ===============================================================================
 デフォルトキー設定
@@ -39,7 +41,19 @@ PPc
 パス補完一行編集
 	ENTER		入力途中で実行した場合に、第一候補を選択
 	SHIFT+ENTER	反対窓のカレントディレクトリを編集中のパスに変更
-	F12		fenrirScanを実行してPPXUPATH.TXTを更新する
-	CTRL+S		編集中のパスをScanRule.iniに追加する
+	CTRL+ENTER	zoxide queryの出力パスに移動
+	CTRL+S		fenrirscan制御メニュー
 	CTRL+@		検索モジュールのon/offトグル
+	CTRL+Z		zoxide queryの出力を一行編集上に展開
 
+===============================================================================
+fenrirscan.ini設定例
+
+[GENERAL]
+PriorityStockCount=300
+PathFilePath=.\PPXUPATH.TXT
+HashSize=359
+ProgressShow=0
+ProgressUpdatePer=0
+DelimiterString=,
+fenrirCommandLine=
