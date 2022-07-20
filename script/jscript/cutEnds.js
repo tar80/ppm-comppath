@@ -1,4 +1,5 @@
 ﻿//!*script
+// deno-lint-ignore-file no-var
 /**
  * Separate command and path of editing string
  * NOTE:If the path is a route, separate it to command side
