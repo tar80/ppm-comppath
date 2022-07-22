@@ -16,7 +16,7 @@ var divTexts = (function () {
   var text_ = text.replace(enc.reg, function (chr) {
     return enc.fmt[chr];
   });
-  text_ = text_.replace(/^([^\\]+\s)?(.+(?:@##@|\\))(?!$).*/, function (_p0, p1, p2) {
+  text_ = text_.replace(/^([^\\]+\s)?(.+(?:@##@|\\| ))(?!$).*/, function (_p0, p1, p2) {
     return ~p2.indexOf('"') ? [p1, '"', p2.slice(1)] : [p1, '', p2];
   });
 
@@ -38,4 +38,4 @@ PPx.Execute(
     }) +
     '"'
 );
-PPx.Execute('%k"END SPACE BS"');
+PPx.Execute('%k"@END@SPACE@BS"');
