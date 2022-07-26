@@ -2,7 +2,7 @@
 // deno-lint-ignore-file no-var
 /**
  * Separate command and path of editing string
- * NOTE:If the path is a route, separate it to command side
+ * NOTE:If the path indicates the root, separate it to command side
  *
  * @return {array}
  *  0: Substitute if the beginning of the line is a character other than the path
