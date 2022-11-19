@@ -3,7 +3,7 @@
  * Separate command and path of editing string
  * NOTE:If the path indicates the root, separate it to command side
  *
- * @return {array}
+ * @return {array} [
  *  0: Substitute if the beginning of the line is a character other than the path
  *  1: Substitute if there is a character between the command and the path
  *  2: Substitute the part corresponding to the parent directory in the string
