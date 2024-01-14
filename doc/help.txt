@@ -1,4 +1,4 @@
-Complete path
+Complete the path
 
 Author: tar80 <tar80master@google.com>
 License: MIT License
@@ -17,15 +17,14 @@ fenrirに同梱されています。fenerirscanのパス生成機能を利用す
 ===============================================================================
 構成ファイルの説明
 
-	\script\xxx\cutEnds.js	上方向へパスを補完するためのスクリプト
-	\script\xxx\counter.js	Gオペレーターのカウンター用スクリプト
-	\script\xxx\fenrirs.js	fenrirscan制御スクリプト
+	\script\xxx\trimEnd.js	パスを一つ上方向へ補完するためのスクリプト
+	\script\xxx\fenrirs.js	fenrirscanのScanRule.ini更新用のスクリプト
 
 ===============================================================================
 テーブル情報
 
 	K_ppmComppath	パス補完一行編集で使用するキー
-	M_ppmComppath	fenrirscan制御用メニュー
+	M_ppmComppath	scanrule.ini更新用メニュー
 
 ===============================================================================
 デフォルトキー設定
@@ -39,10 +38,10 @@ PPc
 	^L	パスの下行
 
 パス補完一行編集
-	ENTER		入力途中で実行した場合に、第一候補を選択
+	ENTER		入力途中で実行した場合に第一候補を選択
 	SHIFT+ENTER	反対窓のカレントディレクトリを編集中のパスに変更
 	CTRL+ENTER	zoxide queryの出力パスに移動
-	CTRL+S		fenrirscan制御メニュー
+	CTRL+S		ScanRule.ini更新用メニュー
 	CTRL+@		検索モジュールのon/offトグル
 	CTRL+Z		zoxide queryの出力を一行編集上に展開
 
