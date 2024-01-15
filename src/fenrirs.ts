@@ -7,9 +7,8 @@ import fso from '@ppmdev/modules/filesystem.ts';
 import {entryAttribute} from '@ppmdev/modules/meta.ts';
 import {isError} from '@ppmdev/modules/guard.ts';
 import {readLines, writeLines} from '@ppmdev/modules/io.ts';
-// import debug from '@ppmdev/modules/debug.ts';
 
-type Args = 'add' | 'addsub' | 'remove';
+type Args = 'add' | 'addsub' | 'del' | 'remove';
 
 const FILE_ENCODE = 'sjis';
 const FILE_LINEFEED = info.nlcode;
@@ -25,10 +24,7 @@ const paths = (() => {
 })();
 
 const main = (): void => {
-  if (!fso.FileExists(paths.scanRule)) {
-    PPx.Echo(`ScanRule.ini ${lang.notExists}`);
-    return;
-  }
+  !fso.FileExists(paths.scanRule) && PPx.Execute(`*makefile ${paths.scanRule}`);
 
   const [error, fpath] = readLines({path: actualPath(paths.fpath), enc: FILE_ENCODE});
 
@@ -37,6 +33,7 @@ const main = (): void => {
     return;
   }
 
+  fpath.lines.shift();
   fpath.lines.pop();
   const arg = PPx.Arguments.length > 0 ? PPx.Arguments.Item(0) : 'update';
 
@@ -50,7 +47,13 @@ const main = (): void => {
   }
 
   PPx.Execute(`%Os ${paths.scanExe}`);
-  writeLines({path: paths.upath, data: fpath.lines, enc: FILE_ENCODE, append: true, linefeed: FILE_LINEFEED});
+  writeLines({
+    path: actualPath(paths.upath),
+    data: fpath.lines,
+    enc: FILE_ENCODE,
+    append: true,
+    linefeed: FILE_LINEFEED
+  });
   PPx.Execute('*completelist -reload');
   PPx.linemessage(lang.update);
 };
@@ -73,15 +76,16 @@ const actualPath = (path: string): string => {
 };
 
 const updateRules = (proc: Args): string | void => {
-  const [error, data] = readLines({path: actualPath(paths.scanRule), enc: FILE_ENCODE});
-
-  if (isError(error, data)) {
-    return data;
-  }
-
   const regPath = PPx.Extract('%*extract("%*edittext()")').toLowerCase();
-  const rgx = new RegExp(`^(\\*|\\+|\\-)${regPath.replace(/\\/g, '\\\\')}(,\\\\)?`);
-  const rules = data.lines;
+  const newRule = {
+    'add': {pre: '+', suf: '', rgx: '\\+'},
+    'del': {pre: '-', suf: '', rgx: '\\-'},
+    'addsub': {pre: '*', suf: ',\\', rgx: '\\*'},
+    'remove': {pre: '', suf: '', rgx: '(\\*|\\+|\\-)'}
+  }[proc];
+  const rgx = new RegExp(`^${newRule.rgx}${regPath.replace(/\\/g, '\\\\')}(,\\\\)?$`);
+  const [_, data] = readLines({path: actualPath(paths.scanRule), enc: FILE_ENCODE});
+  const rules = typeof data === 'string' ? [] : data.lines;
 
   for (let i = rules.length; i >= 0; i--) {
     if (rgx.test(rules[i])) {
@@ -91,11 +95,6 @@ const updateRules = (proc: Args): string | void => {
   }
 
   if (proc !== 'remove') {
-    const newRule = {
-      'add': {pre: '+', suf: ''},
-      'del': {pre: '-', suf: ''},
-      'addsub': {pre: '*', suf: ',\\'}
-    }[proc];
     rules.push(`${newRule.pre}${regPath}${newRule.suf}`);
   }
 

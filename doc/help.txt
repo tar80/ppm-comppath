@@ -6,19 +6,24 @@ Repository: https://github.com/tar80/ppm-comppath
 ===============================================================================
 
 パス補完用の一行編集を追加します。
-パス補完一行編集ではfenrirscanで生成したパスリストを利用できる他、キー操作での
+パス補完一行編集ではfenrirScanで生成したパスリストを利用できる他、キー操作での
 パス昇降、入力途中でのENTER押下時に第一候補を選択する機能が有効になります。
 またzoxideのパスが通っていれば、zoxide queryの出力を操作することもできます。
 
-fenrirscanはhttp://hp.vector.co.jp/authors/VA026310/soft2.htmで配布されている
+fenrirScanはhttp://hp.vector.co.jp/authors/VA026310/soft2.htmで配布されている
 fenrirに同梱されています。fenerirscanのパス生成機能を利用するには、PPxの
-インストールディレクトリにfenrirscanを配置する必要があります。
+インストールディレクトリにfenrirScanを配置する必要があります。
 
 ===============================================================================
 構成ファイルの説明
 
-	\script\xxx\trimEnd.js	パスを一つ上方向へ補完するためのスクリプト
-	\script\xxx\fenrirs.js	fenrirscanのScanRule.ini更新用のスクリプト
+	\dist\trimEnd.js	パスを一つ上方向へ補完するためのスクリプト
+	\dist\fenrirs.js	fenrirScanのScanRule.ini更新用のスクリプト
+	\dist\setupFenrirScan.js
+		PPxのインストールディレクトリにfenrirScan.exeがない場合に
+		fenrirScan.exe, fenrirScan.txt, fenrirScan.iniを自動で配置する
+		ダウンロードした書庫ファイルは%sgu'ppmarch'に保存される
+		書庫の展開に7za.exeか7z.exeを使用。パスが通っていない場合は中止
 
 ===============================================================================
 テーブル情報
