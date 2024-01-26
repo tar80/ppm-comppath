@@ -1,7 +1,7 @@
 {
   "name": "@ppmdev/ppm-comppath",
-  "version": "2.4.1",
-  "description": "One-Line-Editor for moving directories",
+  "version": "2.4.2",
+  "description": "PPx one-line editor for directory movement",
   "author": "tar80 <tar80master@gmail.com> (https://tar80.github.io/pages-pca/)",
   "license": "MIT",
   "directories": {

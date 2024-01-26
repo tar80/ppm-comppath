@@ -7,11 +7,14 @@ import fso from '@ppmdev/modules/filesystem.ts';
 import {entryAttribute} from '@ppmdev/modules/meta.ts';
 import {isError} from '@ppmdev/modules/guard.ts';
 import {readLines, writeLines} from '@ppmdev/modules/io.ts';
+import {langFenrirs} from './mod/language.ts';
 
 type Args = 'add' | 'addsub' | 'del' | 'remove';
 
 const FILE_ENCODE = 'sjis';
 const FILE_LINEFEED = info.nlcode;
+const lang = langFenrirs[useLanguage()];
+
 const paths = (() => {
   const ppxDir = PPx.Extract('%0%\\');
 
@@ -58,17 +61,6 @@ const main = (): void => {
   PPx.linemessage(lang.update);
 };
 
-const lang = {
-  en: {
-    notExists: 'does not exist',
-    update: 'Update PPXUPATH.TXT'
-  },
-  jp: {
-    notExists: 'がありません',
-    update: 'PPXUPATH.TXT を更新しました'
-  }
-}[useLanguage()];
-
 const actualPath = (path: string): string => {
   const fs = fso.GetFile(path);
 
@@ -76,14 +68,14 @@ const actualPath = (path: string): string => {
 };
 
 const updateRules = (proc: Args): string | void => {
-  const regPath = PPx.Extract('%*extract("%*edittext()")').toLowerCase();
+  const regPath = PPx.Extract('%*extract("%*edittext()")');
   const newRule = {
     'add': {pre: '+', suf: '', rgx: '\\+'},
     'del': {pre: '-', suf: '', rgx: '\\-'},
     'addsub': {pre: '*', suf: ',\\', rgx: '\\*'},
     'remove': {pre: '', suf: '', rgx: '(\\*|\\+|\\-)'}
   }[proc];
-  const rgx = new RegExp(`^${newRule.rgx}${regPath.replace(/\\/g, '\\\\')}(,\\\\)?$`);
+  const rgx = new RegExp(`^${newRule.rgx}${regPath.replace(/\\/g, '\\\\')}(,\\\\)?$`, 'i');
   const [_, data] = readLines({path: actualPath(paths.scanRule), enc: FILE_ENCODE});
   const rules = typeof data === 'string' ? [] : data.lines;
 
