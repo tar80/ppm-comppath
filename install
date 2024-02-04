@@ -1,13 +1,13 @@
 ﻿PPM_PLUGIN_NAME=ppm-comppath
 
 #Plugin version
-VERSION=2.4.3
+VERSION=2.5.0
 
 #Requires ppm version
-PPM_VERSION=0.93
+PPM_VERSION=0.94
 
 #Requires PPx version
-PPX_VERSION=194
+PPX_VERSION=19501
 
 #Requires PPx Script Module version
 SCRIPT_VERSION=21
