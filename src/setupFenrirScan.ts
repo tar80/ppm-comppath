@@ -21,13 +21,9 @@ const main = (): void => {
     return;
   }
 
-  if (fso.FileExists('%0fenrirScan.exe')) {
-    setFenrirScan(archiver, curl);
-
-    if (fso.FileExists('%0fenrirScan.ini')) {
-      setInitialFile();
-    }
-  }
+  const wd = PPx.Extract('%0');
+  !fso.FileExists(`${wd}fenrirScan.exe`) && setFenrirScan(archiver, curl);
+  !fso.FileExists(`${wd}fenrirScan.ini`) && setInitialFile();
 };
 
 const getCurlPath = (): string => {
