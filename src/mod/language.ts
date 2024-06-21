@@ -1,10 +1,12 @@
 export const langFenrirs = {
   en: {
     notExists: 'does not exist',
-    update: 'Update PPXUPATH.TXT'
+    wrongArgument: 'Wrong argument',
+    update: 'Update PPXUPATH.TXT',
   },
-  jp: {
+  ja: {
     notExists: 'がありません',
+    wrongArgument: '引数が間違っています',
     update: 'PPXUPATH.TXT を更新しました'
   }
 };

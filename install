@@ -1,17 +1,18 @@
 ﻿PPM_PLUGIN_NAME=ppm-comppath
 
 #Plugin version
-VERSION=2.5.4
+VERSION=2.6.0
 
 #Requires ppm version
-PPM_VERSION=0.94
+PPM_VERSION=0.95
 
 #Requires PPx version
-PPX_VERSION=19501
+PPX_VERSION=19701
 
 #Requires PPx Script Module version
 SCRIPT_VERSION=21
 CV8_VERSION=3
+QJS_VERSION=0
 
 #Requires external executables. Separated dy commas
 EXECUTABLES=

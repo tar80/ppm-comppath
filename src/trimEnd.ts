@@ -1,16 +1,24 @@
-/* @file Complete the path being edited to the upper level path */
+/* @file Complete the path being edited to the upper level path
+ * @arg 0 {string} - Specify "1" to maintain the running state
+ */
 
+import {hasArg} from '@ppmdev/modules/argument.ts';
+import {isBottom} from '@ppmdev/modules/guard.ts';
 import debug from '@ppmdev/modules/debug.ts';
 
 const DELIM = '@##@';
 
-const main = (): void => {
+if (hasArg('1')) {
+  PPx.StayMode = 2;
+}
+
+const ppx_resume = (): void => {
   const text = PPx.Extract('%*edittext');
   const param = splitString(text);
 
   // processing string including half-width space
   // cuts all characters after or after a half-width space
-  if (typeof param[2] === 'undefined') {
+  if (isBottom(param[2])) {
     param[0] = ~param[0].slice(0, -1).indexOf(' ') ? param[0].split(' ')[0] : '';
   }
 
@@ -29,5 +37,5 @@ const splitString = (v: string): string[] => {
   return v_.split(DELIM);
 };
 
-if (!debug.jestRun()) main();
+if (!debug.jestRun()) ppx_resume();
 // export {splitString}

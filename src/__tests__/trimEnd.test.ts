@@ -1,6 +1,6 @@
-import PPx from '@ppmdev/modules/ppx';
+import PPx from '@ppmdev/modules/ppx.ts';
 global.PPx = Object.create(PPx);
-import {splitString} from '../trimEnd';
+import {splitString} from '../trimEnd.ts';
 
 describe('splitString()', function () {
   it('pass the path. the end of the string must be trimmed', () => {
