@@ -17,9 +17,9 @@ fenrirに同梱されています。fenerirscanのパス生成機能を利用す
 ===============================================================================
 構成ファイルの説明
 
-	\dist\trimEnd.js	パスを一つ上方向へ補完するためのスクリプト
-	\dist\fenrirs.js	fenrirScanのScanRule.ini更新用のスクリプト
-	\dist\setupFenrirScan.js
+	dist\trimEnd.stay.js	パスを一つ上方向へ補完するためのスクリプト
+	dist\fenrirs.js	fenrirScanのScanRule.ini更新用のスクリプト
+	dist\setupFenrirScan.js
 		PPxのインストールディレクトリにfenrirScan.exeがない場合に
 		fenrirScan.exe, fenrirScan.txt, fenrirScan.iniを自動で配置する
 		ダウンロードした書庫ファイルは%sgu'ppmarch'に保存される

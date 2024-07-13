@@ -4,12 +4,14 @@
 
 import {hasArg} from '@ppmdev/modules/argument.ts';
 import {isBottom} from '@ppmdev/modules/guard.ts';
+import {atActiveEvent} from '@ppmdev/modules/staymode.ts';
 import debug from '@ppmdev/modules/debug.ts';
 
 const DELIM = '@##@';
 
 if (hasArg('1')) {
   PPx.StayMode = 2;
+  atActiveEvent.hold('ppm_comppath');
 }
 
 const ppx_resume = (): void => {
