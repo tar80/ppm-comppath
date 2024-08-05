@@ -14,6 +14,7 @@ if (hasArg('1')) {
   atActiveEvent.hold('ppm_comppath');
 }
 
+const ppx_finally = (): void => PPx.Echo('[WARN] instance remain trimEnd.stay.js');
 const ppx_resume = (): void => {
   const text = PPx.Extract('%*edittext');
   const param = splitString(text);
