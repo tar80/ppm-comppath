@@ -1,20 +1,14 @@
 /* @file Complete the path being edited to the upper level path
- * @arg 0 {string} - Specify "1" to maintain the running state
  */
 
 import {hasArg} from '@ppmdev/modules/argument.ts';
+import debug from '@ppmdev/modules/debug.ts';
 import {isBottom} from '@ppmdev/modules/guard.ts';
 import {atActiveEvent} from '@ppmdev/modules/staymode.ts';
-import debug from '@ppmdev/modules/debug.ts';
 
 const DELIM = '@##@';
+const EVENT_LABEL = 'ppm_comppath';
 
-if (hasArg('1')) {
-  PPx.StayMode = 2;
-  atActiveEvent.hold('ppm_comppath');
-}
-
-const ppx_finally = (): void => PPx.Echo('[WARN] instance remain trimEnd.stay.js');
 const ppx_resume = (): void => {
   const text = PPx.Extract('%*edittext');
   const param = splitString(text);
@@ -28,6 +22,8 @@ const ppx_resume = (): void => {
   const replacedText = param.join('');
   PPx.Execute(`*replace "%(${replacedText}%)"%:%k"@END"`);
 };
+
+// const ppx_finally = (): void => PPx.Echo('[ERROR] instance remain trimEnd.stay.js');
 
 const splitString = (v: string): string[] => {
   const rgx = /^([^/\\]+\s)?(.+(?:[,/\\ ]))(?!$).*/;
