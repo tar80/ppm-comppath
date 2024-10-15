@@ -1,6 +1,6 @@
 {
   "name": "@ppmdev/ppm-comppath",
-  "version": "2.6.7",
+  "version": "2.6.8",
   "description": "PPx one-line editor for moving to a specified path",
   "author": "tar80 <tar80master@gmail.com> (https://tar80.github.io/pages-pca/)",
   "license": "MIT",
